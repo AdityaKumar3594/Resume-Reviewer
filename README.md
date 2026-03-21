@@ -52,11 +52,6 @@
 - Resume PDF Generator with professional formatting
 - All Reports Dashboard with quick access and history
 
----
-
-## Live Demo
-- **Frontend:** https://resume-analyzer-nine-xi.vercel.app  
-- **Backend:** https://resume-analyzer-3e1q.onrender.com  
 
 ---
 
@@ -164,9 +159,8 @@ Resume-Analyzer/
 
 ---
 
-## Screenshots
-- Add screenshots or GIFs here  
-- Demo: https://resume-analyzer-nine-xi.vercel.app
+## Demo
+- Link: https://resume-analyzer-nine-xi.vercel.app
 
 ---
 
