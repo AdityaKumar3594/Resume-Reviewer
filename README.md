@@ -1,11 +1,8 @@
 # Resume Analyzer (AI Interview Coach)
 
-[![Vercel](https://img.shields.io/badge/Frontend-Vercel-000?logo=vercel&logoColor=white)](https://resume-analyzer-nine-xi.vercel.app/)  
-[![Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=white)](https://resume-analyzer-3e1q.onrender.com)  
-[![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)  
-[![Node.js](https://img.shields.io/badge/Node.js-22%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-000?logo=vercel&logoColor=white)](https://resume-analyzer-nine-xi.vercel.app/) [![Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=white)](https://resume-analyzer-3e1q.onrender.com) [![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/) [![Node.js](https://img.shields.io/badge/Node.js-22%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 
-**Resume Analyzer** is a full-stack AI interview prep platform that analyzes a candidate’s resume and job description to generate a tailored interview strategy, skill gaps, and a readiness roadmap—then produces a polished PDF resume.
+**Resume Analyzer** is a full-stack AI interview prep platform that analyzes a candidateâ€™s resume and job description to generate a tailored interview strategy, skill gaps, and a readiness roadmapâ€”then produces a polished PDF resume.
 
 ---
 
@@ -142,26 +139,26 @@ npm run dev
 ```
 Resume-Analyzer/
 +- Backend/
-¦  +- src/
-¦  ¦  +- app.js
-¦  ¦  +- config/
-¦  ¦  +- controllers/
-¦  ¦  +- middlewares/
-¦  ¦  +- models/
-¦  ¦  +- routes/
-¦  ¦  +- services/
-¦  +- package.json
-¦
+Â¦  +- src/
+Â¦  Â¦  +- app.js
+Â¦  Â¦  +- config/
+Â¦  Â¦  +- controllers/
+Â¦  Â¦  +- middlewares/
+Â¦  Â¦  +- models/
+Â¦  Â¦  +- routes/
+Â¦  Â¦  +- services/
+Â¦  +- package.json
+Â¦
 +- Frontend/
-¦  +- src/
-¦  ¦  +- features/
-¦  ¦  ¦  +- auth/
-¦  ¦  ¦  +- interview/
-¦  ¦  +- app.routes.jsx
-¦  ¦  +- App.jsx
-¦  ¦  +- main.jsx
-¦  +- style.scss
-¦  +- package.json
+Â¦  +- src/
+Â¦  Â¦  +- features/
+Â¦  Â¦  Â¦  +- auth/
+Â¦  Â¦  Â¦  +- interview/
+Â¦  Â¦  +- app.routes.jsx
+Â¦  Â¦  +- App.jsx
+Â¦  Â¦  +- main.jsx
+Â¦  +- style.scss
+Â¦  +- package.json
 +- .gitignore
 ```
 
