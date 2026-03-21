@@ -50,10 +50,10 @@
 ---
 
 ## Key Features
-- ?? **Authentication** (register, login, logout, get-me)
-- ?? **AI Interview Report**: technical + behavioral questions, skill gaps, and roadmap
-- ?? **Resume PDF Generator** with professional formatting
-- ?? **All Reports Dashboard** with quick access and history
+- Authentication (register, login, logout, get-me)
+- AI Interview Report: technical + behavioral questions, skill gaps, and roadmap
+- Resume PDF Generator with professional formatting
+- All Reports Dashboard with quick access and history
 
 ---
 
