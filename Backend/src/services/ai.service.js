@@ -1,6 +1,8 @@
 const { GoogleGenAI } = require("@google/genai")
 const { z } = require("zod")
-const puppeteer = require("puppeteer")
+const isProd = process.env.NODE_ENV === "production"
+const puppeteer = isProd ? require("puppeteer-core") : require("puppeteer")
+const chromium = isProd ? require("@sparticuz/chromium") : null
 
 const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_GENAI_API_KEY
@@ -53,7 +55,18 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 
 
 async function generatePdfFromHtml(htmlContent) {
-    const browser = await puppeteer.launch()
+    const launchOptions = isProd
+        ? {
+            args: chromium.args,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless,
+            defaultViewport: chromium.defaultViewport
+        }
+        : {
+            headless: "new"
+        }
+
+    const browser = await puppeteer.launch(launchOptions)
     const page = await browser.newPage();
     await page.setContent(htmlContent, { waitUntil: "networkidle0" })
 
