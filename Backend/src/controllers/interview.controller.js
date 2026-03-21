@@ -1,7 +1,35 @@
 const pdfParse = require("pdf-parse")
-const parsePdf = typeof pdfParse === "function"
-    ? pdfParse
-    : (typeof pdfParse.default === "function" ? pdfParse.default : null)
+
+let cachedPdfParser = null
+const getPdfParser = async () => {
+    if (cachedPdfParser) return cachedPdfParser
+
+    if (typeof pdfParse === "function") {
+        cachedPdfParser = pdfParse
+        return cachedPdfParser
+    }
+
+    if (pdfParse && typeof pdfParse.default === "function") {
+        cachedPdfParser = pdfParse.default
+        return cachedPdfParser
+    }
+
+    try {
+        const mod = await import("pdf-parse")
+        if (typeof mod === "function") {
+            cachedPdfParser = mod
+            return cachedPdfParser
+        }
+        if (mod && typeof mod.default === "function") {
+            cachedPdfParser = mod.default
+            return cachedPdfParser
+        }
+    } catch (err) {
+        // ignore and fall through
+    }
+
+    return null
+}
 const { generateInterviewReport,generateResumePdf } = require("../services/ai.service")
 const interviewReportModel = require("../models/interviewReport.model")
 
@@ -14,6 +42,7 @@ async function generateInterViewReportController(req, res) {
     let resumeText = ""
 
     if (req.file?.buffer) {
+        const parsePdf = await getPdfParser()
         if (!parsePdf) {
             return res.status(500).json({
                 message: "PDF parser is not available on the server."
