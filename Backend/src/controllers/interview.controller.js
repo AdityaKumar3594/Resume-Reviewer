@@ -1,4 +1,5 @@
 const pdfParse = require("pdf-parse")
+const parsePdf = pdfParse.default || pdfParse
 const { generateInterviewReport,generateResumePdf } = require("../services/ai.service")
 const interviewReportModel = require("../models/interviewReport.model")
 
@@ -11,7 +12,7 @@ async function generateInterViewReportController(req, res) {
     let resumeText = ""
 
     if (req.file?.buffer) {
-        const resumeContent = await pdfParse(req.file.buffer)
+        const resumeContent = await parsePdf(req.file.buffer)
         resumeText = resumeContent?.text ?? ""
     }
 
