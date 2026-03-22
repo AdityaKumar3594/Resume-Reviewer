@@ -18,7 +18,7 @@ const Login = () => {
         e.preventDefault();
         // Handle login logic here
         await handleLogin({ email, password });
-        navigate('/');
+        navigate('/home');
     }
 
     if (loading) {

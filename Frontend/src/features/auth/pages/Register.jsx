@@ -16,7 +16,7 @@ const Register = () => {
         e.preventDefault();
         // Handle registration logic here
         await handleRegister({ username, email, password });
-        navigate('/');
+        navigate('/home');
     }
 
     if (loading) {
