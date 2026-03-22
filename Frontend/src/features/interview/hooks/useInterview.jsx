@@ -1,19 +1,30 @@
 import { getAllInterviewReports, generateInterviewReport, getInterviewReportById, generateResumePdf } from "../services/interview.api"
 import { useContext, useEffect } from "react"
 import { InterviewContext } from "../interview.context"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 
 
 export const useInterview = () => {
 
     const context = useContext(InterviewContext)
     const { interviewId } = useParams()
+    const navigate = useNavigate()
 
     if (!context) {
         throw new Error("useInterview must be used within an InterviewProvider")
     }
 
     const { loading, setLoading, report, setReport, reports, setReports } = context
+
+    const handleAuthError = (error) => {
+        if (error?.response?.status === 401) {
+            setReport(null)
+            setReports([])
+            navigate("/login", { replace: true })
+            return true
+        }
+        return false
+    }
 
     const generateReport = async ({ jobDescription, selfDescription, resumeFile }) => {
         setLoading(true)
@@ -24,7 +35,9 @@ export const useInterview = () => {
             setReport(reportData)
             return reportData
         } catch (error) {
-            console.error("generateReport failed", error)
+            if (!handleAuthError(error)) {
+                console.error("generateReport failed", error)
+            }
             setReport(null)
             return null
         } finally {
@@ -40,7 +53,9 @@ export const useInterview = () => {
             setReport(reportData)
             return reportData
         } catch (error) {
-            console.error("getReportById failed", error)
+            if (!handleAuthError(error)) {
+                console.error("getReportById failed", error)
+            }
             setReport(null)
             return null
         } finally {
@@ -56,7 +71,9 @@ export const useInterview = () => {
             setReports(reportsData)
             return reportsData
         } catch (error) {
-            console.error("getReports failed", error)
+            if (!handleAuthError(error)) {
+                console.error("getReports failed", error)
+            }
             setReports([])
             return []
         } finally {
@@ -76,7 +93,9 @@ export const useInterview = () => {
             link.click()
         }
         catch (error) {
-            console.log(error)
+            if (!handleAuthError(error)) {
+                console.log(error)
+            }
         }
     }
 
