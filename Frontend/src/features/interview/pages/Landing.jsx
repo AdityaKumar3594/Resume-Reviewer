@@ -52,7 +52,7 @@ const Landing = () => {
               aria-expanded={loginOpen}
               onClick={() => setLoginOpen((prev) => !prev)}
             >
-              Login
+              {user ? (user.email || user.username || "Account") : "Login"}
               <span className="chevron" aria-hidden="true">▾</span>
             </button>
             <div className={`login-dropdown ${loginOpen ? "login-dropdown--open" : ""}`} role="menu">

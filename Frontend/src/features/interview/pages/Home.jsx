@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import "../style/home.scss"
 import { useInterview } from '../hooks/useInterview.jsx'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { useAuth } from "../../auth/hooks/useAuth.js"
 
 const Home = () => {
@@ -68,42 +68,53 @@ const Home = () => {
                     <h1>Create Your Custom <span className='highlight'>Interview Plan</span></h1>
                     <p>Let our AI analyze the job requirements and your unique profile to build a winning strategy.</p>
                 </div>
-                <div className='profile-menu' ref={profileRef}>
-                    <button
-                        className='profile-btn'
-                        onClick={() => setProfileOpen((prev) => !prev)}
-                        aria-label='Open profile menu'
-                        title='Profile'
+                <div className='page-header__actions'>
+                    <Link
+                        className='back-to-landing'
+                        to='/'
+                        title='Back to landing page'
+                        aria-label='Back to landing page'
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </button>
-                    {profileOpen && (
-                        <div className='profile-dropdown'>
-                            <div className='profile-id'>
-                                <span>Signed in</span>
-                                <strong>{user?.email || user?.username || user?._id || "Unknown user"}</strong>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                        <span>Landing</span>
+                    </Link>
+                    <div className='profile-menu' ref={profileRef}>
+                        <button
+                            className='profile-btn'
+                            onClick={() => setProfileOpen((prev) => !prev)}
+                            aria-label='Open profile menu'
+                            title='Profile'
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </button>
+                        {profileOpen && (
+                            <div className='profile-dropdown'>
+                                <div className='profile-id'>
+                                    <span>Signed in</span>
+                                    <strong>{user?.email || user?.username || user?._id || "Unknown user"}</strong>
+                                </div>
+                                <button
+                                    className={`profile-action ${location.pathname === "/reports" ? "profile-action--active" : ""}`}
+                                    onClick={() => {
+                                        setProfileOpen(false)
+                                        navigate("/reports")
+                                    }}
+                                >
+                                    All Reports
+                                </button>
+                                <button
+                                    className='profile-action profile-action--danger'
+                                    onClick={async () => {
+                                        await handleLogout()
+                                        setProfileOpen(false)
+                                        navigate("/login")
+                                    }}
+                                >
+                                    Logout
+                                </button>
                             </div>
-                            <button
-                                className={`profile-action ${location.pathname === "/reports" ? "profile-action--active" : ""}`}
-                                onClick={() => {
-                                    setProfileOpen(false)
-                                    navigate("/reports")
-                                }}
-                            >
-                                All Reports
-                            </button>
-                            <button
-                                className='profile-action profile-action--danger'
-                                onClick={async () => {
-                                    await handleLogout()
-                                    setProfileOpen(false)
-                                    navigate("/login")
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
             </header>
 
