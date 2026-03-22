@@ -69,15 +69,6 @@ const Home = () => {
                     <p>Let our AI analyze the job requirements and your unique profile to build a winning strategy.</p>
                 </div>
                 <div className='page-header__actions'>
-                    <Link
-                        className='back-to-landing'
-                        to='/'
-                        title='Back to landing page'
-                        aria-label='Back to landing page'
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
-                        <span>Landing</span>
-                    </Link>
                     <div className='profile-menu' ref={profileRef}>
                         <button
                             className='profile-btn'
